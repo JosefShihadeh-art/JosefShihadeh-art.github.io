@@ -1,177 +1,348 @@
-
 <!DOCTYPE html>
 <html lang="sv">
-  
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Träning och Hälsa</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Träning & Hälsa – Ultimate Edition</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
   <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
     body {
-      font-family: Arial, sans-serif;
-      line-height: 1.6;
-      margin: 0;
-      padding: 0;
-      background-color: #f2f2f2;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(120deg, #f5f7fa, #e3f2fd);
       color: #333;
+      line-height: 1.7;
+      transition: all 0.3s ease;
     }
 
-
-    header {
-      background-color: #4CAF50;
-      color: white;
-      text-align: center;
-      padding: 30px 0;
+    .dark-mode {
+      background: linear-gradient(120deg, #0f2027, #203a43, #2c5364);
+      color: #e0e0e0;
     }
 
-
+    /* ===== NAV ===== */
     nav {
-      background-color: #333;
+      position: sticky;
+      top: 0;
+      background: rgba(0,0,0,0.85);
+      backdrop-filter: blur(10px);
+      display: flex;
+      justify-content: center;
+      gap: 35px;
+      padding: 15px 0;
+      z-index: 1000;
     }
-
 
     nav a {
       color: white;
-      padding: 14px 20px;
-      display: inline-block;
       text-decoration: none;
+      font-weight: 500;
+      letter-spacing: 1px;
+      position: relative;
     }
 
-
-    nav a:hover {
-      background-color: #4CAF50;
+    nav a::after {
+      content: "";
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: -5px;
+      left: 0;
+      background: #4CAF50;
+      transition: width 0.3s;
     }
 
+    nav a:hover::after { width: 100%; }
 
-    section {
+    /* ===== HERO ===== */
+    .hero {
+      height: 100vh;
+      background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)),
+        url('https://images.unsplash.com/photo-1558611848-73f7eb4001b9?auto=format&fit=crop&w=1800&q=80');
+      background-size: cover;
+      background-position: center;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
       padding: 20px;
-      max-width: 900px;
+    }
+
+    .hero h1 { font-size: 3.8rem; margin-bottom: 20px; }
+    .hero p { font-size: 1.3rem; max-width: 700px; margin: auto; }
+
+    /* ===== SECTIONS ===== */
+    section {
+      padding: 100px 20px;
+      max-width: 1200px;
       margin: auto;
     }
 
-
     h2 {
-      color: #4CAF50;
-    }
-
-
-    img {
-      max-width: 100%;
-      height: auto;
-      display: block;
-      margin: 10px 0;
-      border-radius: 10px;
-    }
-
-
-    footer {
-      background-color: #333;
-      color: white;
       text-align: center;
-      padding: 15px 0;
-      margin-top: 20px;
+      margin-bottom: 30px;
+      font-size: 2.6rem;
+      color: #2e7d32;
     }
 
+    .subtitle {
+      text-align: center;
+      max-width: 800px;
+      margin: 0 auto 60px;
+      font-size: 1.15rem;
+    }
 
+    /* ===== CARDS ===== */
     .cards {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 20px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 35px;
     }
-
 
     .card {
-      background-color: white;
-      padding: 15px;
+      background: white;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+      transition: all 0.4s ease;
+    }
+
+    .card:hover { transform: translateY(-12px) scale(1.02); }
+
+    .card img {
+      width: 100%;
+      height: 190px;
+      object-fit: cover;
+    }
+
+    .card-content { padding: 25px; }
+
+    .badge {
+      display: inline-block;
+      background: #4CAF50;
+      color: white;
+      padding: 5px 12px;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      margin-bottom: 10px;
+    }
+
+    /* ===== INFO BOX ===== */
+    .info-box {
+      background: rgba(76,175,80,0.15);
+      border-left: 6px solid #4CAF50;
+      padding: 25px;
+      margin: 60px auto 0;
+      border-radius: 15px;
+      max-width: 900px;
+    }
+
+    /* ===== PARALLAX ===== */
+    .parallax {
+      background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
+        url('https://images.unsplash.com/photo-1546484959-fb2f14c4b26c?auto=format&fit=crop&w=1800&q=80');
+      background-attachment: fixed;
+      background-size: cover;
+      background-position: center;
+      color: white;
+      text-align: center;
+    }
+
+    /* ===== BMI ===== */
+    .bmi-box {
+      max-width: 420px;
+      margin: auto;
+      background: white;
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+      text-align: center;
+    }
+
+    .bmi-box input {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 15px;
       border-radius: 10px;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-      flex: 1 1 250px;
+      border: 1px solid #ccc;
+    }
+
+    .bmi-box button {
+      padding: 12px 25px;
+      background: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 25px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    /* ===== FOOTER ===== */
+    footer {
+      background: #000;
+      color: white;
+      text-align: center;
+      padding: 40px 20px;
+    }
+
+    #darkModeBtn {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      padding: 14px 20px;
+      border: none;
+      border-radius: 30px;
+      background: linear-gradient(45deg, #4CAF50, #2e7d32);
+      color: white;
+      cursor: pointer;
+      font-weight: 600;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.3);
     }
   </style>
 </head>
 <body>
 
+<nav>
+  <a href="#traning">Träning</a>
+  <a href="#kost">Kost</a>
+  <a href="#program">Program</a>
+  <a href="#mindset">Mindset</a>
+  <a href="#bmi">BMI</a>
+  <a href="#faq">FAQ</a>
+</nav>
 
-  <header>
-    <h1>Träning och Hälsa</h1>
-    <p>Lär dig hur du tränar smart, äter hälsosamt och mår bättre !!!!</p>
-  </header>
+<div class="hero">
+  <div>
+    <h1>Träning & Hälsa</h1>
+    <p>En modern, interaktiv och inspirerande guide till ett starkare och mer balanserat liv.</p>
+  </div>
+</div>
 
+<section id="traning">
+  <h2>Träningsformer</h2>
+  <p class="subtitle">För optimal hälsa behöver kroppen olika typer av träning.</p>
 
-  <nav>
-    <a href="#omtraning">Om Träning</a>
-    <a href="#kost">Kost och Näring</a>
-    <a href="#tips">Tips</a>
-  </nav>
-
-
-  <section id="omtraning">
-    <h2>Om Träning</h2>
-    <p>Träning är viktigt för både kroppen och hjärnan. Det stärker muskler, ben, hjärta och lungor, och minskar stress.</p>
-   
-    <div class="cards">
-      <div class="card">
-        <h3>Kondition</h3>
-        <img src="https://images.unsplash.com/photo-1554284126-7b45a3b47335?auto=format&fit=crop&w=800&q=80" alt="Löpning">
-        <p>Löpning, cykling och simning stärker hjärta och lungor.</p>
-      </div>
-
-
-      <div class="card">
-        <h3>Styrka</h3>
-        <img src="https://images.unsplash.com/photo-1558611848-73f7eb4001b9?auto=format&fit=crop&w=800&q=80" alt="Styrketräning">
-        <p>Styrketräning stärker muskler och skelett och förebygger skador.</p>
-      </div>
-
-
-      <div class="card">
-        <h3>Rörlighet</h3>
-        <img src="https://images.unsplash.com/photo-1605296867304-46d5465a13f1?auto=format&fit=crop&w=800&q=80" alt="Yoga">
-        <p>Yoga och stretchning förbättrar rörlighet och balans.</p>
+  <div class="cards">
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1526401485004-2fda9f6bda96?auto=format&fit=crop&w=800&q=80">
+      <img src="https://images.unsplash.com/photo-1508609349937-5ec4ae374ebf?auto=format&fit=crop&w=800&q=80">
+      <div class="card-content">
+        <span class="badge">Uthållighet</span>
+        <h3>Konditionsträning</h3>
+        <p>Konditionsträning stärker hjärta och lungor samt förbättrar uthålligheten.</p>
       </div>
     </div>
-  </section>
 
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1517964603305-11c0f6f66012?auto=format&fit=crop&w=800&q=80">
+      <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?auto=format&fit=crop&w=800&q=80">
+      <div class="card-content">
+        <span class="badge">Styrka</span>
+        <h3>Styrketräning</h3>
+        <p>Bygger muskler, stärker skelettet och förbättrar hållningen.</p>
+      </div>
+    </div>
 
-  <section id="kost">
-    <h2>Kost och Näring</h2>
-    <p>För att må bra och få energi behöver kroppen protein, kolhydrater, fett, vitaminer och mineraler.</p>
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1552058544-f2b08422138a?auto=format&fit=crop&w=800&q=80">
+      <div class="card-content">
+        <span class="badge">Balans</span>
+        <h3>Rörlighet & Yoga</h3>
+        <p>Ökar flexibilitet, minskar stress och förebygger skador.</p>
+      </div>
+    </div>
+  </div>
 
+  <div class="info-box">
+    <strong>Fakta:</strong> Kombinationen av kondition, styrka och rörlighet ger bäst hälsa.
+  </div>
+</section>
 
-    <ul>
-      <li><strong>Protein:</strong> Bygger muskler (ex: ägg, fisk, bönor)</li>
-      <li><strong>Kolhydrater:</strong> Ger energi (ex: fullkorn, frukt, grönsaker)</li>
-      <li><strong>Fett:</strong> Viktigt för hjärna och hormoner (ex: nötter, olivolja, avokado)</li>
-      <li><strong>Vitaminer & Mineraler:</strong> Stärker immunförsvaret (ex: frukt, grönsaker)</li>
-    </ul>
+<section class="parallax">
+  <h2>Träning är mer än bara muskler</h2>
+  <p class="subtitle">Det handlar om energi, fokus och livskvalitet.</p>
+</section>
 
+<section id="kost">
+  <h2>Kost & Näring</h2>
+  <p class="subtitle">Rätt kost ger kroppen rätt förutsättningar.</p>
+  <div class="cards">
+    <div class="card"><div class="card-content"><h3>Protein</h3><p>Bygger och reparerar muskler.</p></div></div>
+    <div class="card"><div class="card-content"><h3>Kolhydrater</h3><p>Ger energi till träning och vardag.</p></div></div>
+    <div class="card"><div class="card-content"><h3>Fetter</h3><p>Viktiga för hjärnan och hormonbalansen.</p></div></div>
+  </div>
+</section>
 
-    <img src="https://images.unsplash.com/photo-1600891964599-f61ba0e24092?auto=format&fit=crop&w=800&q=80" alt="Hälsosam mat">
-  </section>
+<section id="program">
+  <h2>Träningsprogram</h2>
+  <p class="subtitle">Välj nivå efter din erfarenhet.</p>
+  <div class="cards">
+    <div class="card"><div class="card-content"><h3>Nybörjare</h3><p>3 pass/vecka – helkropp.</p></div></div>
+    <div class="card"><div class="card-content"><h3>Medel</h3><p>4–5 pass/vecka – variation.</p></div></div>
+    <div class="card"><div class="card-content"><h3>Avancerad</h3><p>Splitprogram & intervaller.</p></div></div>
+  </div>
+</section>
 
+<section id="mindset">
+  <h2>Mindset & Motivation</h2>
+  <p class="subtitle">Mental styrka är grunden till fysisk utveckling.</p>
+  <div class="info-box">Sätt mål, var konsekvent och fokusera på långsiktig hälsa.</div>
+</section>
 
-  <section id="tips">
-    <h2>Tips för en hälsosam vardag</h2>
-    <ol>
-      <li>Träna regelbundet, minst 3 gånger i veckan</li>
-      <li>Ät varierad mat med mycket grönsaker</li>
-      <li>Sov minst 7-8 timmar per natt</li>
-      <li>Drick mycket vatten</li>
-      <li>Ha roligt och hitta en träningsform du gillar!</li>
-    </ol>
+<section id="bmi">
+  <h2>BMI-kalkylator</h2>
+  <p class="subtitle">Se om din vikt är hälsosam i förhållande till din längd.</p>
 
+  <div class="bmi-box">
+    <input type="number" id="weight" placeholder="Vikt (kg)">
+    <input type="number" id="height" placeholder="Längd (cm)">
+    <button onclick="calcBMI()">Beräkna BMI</button>
+    <p id="bmiResult" style="margin-top:15px;font-weight:600;"></p>
+    <p style="font-size:0.9rem;margin-top:10px;">BMI är en generell indikator och tar inte hänsyn till muskelmassa.</p>
+  </div>
+</section>
 
-    <img src="https://images.unsplash.com/photo-1571019613914-85f342c10470?auto=format&fit=crop&w=800&q=80" alt="Träningsglädje">
-  </section>
+<section id="faq">
+  <h2>Vanliga frågor</h2>
+  <ul style="max-width:800px;margin:auto;">
+    <li><strong>Hur ofta ska man träna?</strong> 3–5 gånger i veckan.</li>
+    <li><strong>Är vila viktigt?</strong> Ja, återhämtning är avgörande.</li>
+    <li><strong>Är BMI alltid korrekt?</strong> Nej, det är en uppskattning.</li>
+  </ul>
+</section>
 
+<footer>
+  <p>&copy; 2026 Träning & Hälsa – Gymnasiearbete</p>
+</footer>
 
-  <footer>
-    <p>&copy; 2025 Träning och Hälsa | Alla rättigheter reserverade</p>
-  </footer>
+<button id="darkModeBtn">🌙 Dark Mode</button>
 
+<script>
+  document.getElementById('darkModeBtn').addEventListener('click', () => {
+    document.body.classList.toggle('dark-mode');
+  });
+
+  function calcBMI() {
+    const w = document.getElementById('weight').value;
+    const h = document.getElementById('height').value / 100;
+    if (!w || !h) return;
+    const bmi = (w / (h * h)).toFixed(1);
+    let status = '';
+    if (bmi < 18.5) status = 'Undervikt';
+    else if (bmi < 25) status = 'Normalvikt';
+    else if (bmi < 30) status = 'Övervikt';
+    else status = 'Fetma';
+    document.getElementById('bmiResult').innerText = `Ditt BMI är ${bmi} (${status})`;
+  }
+</script>
 
 </body>
 </html>
+
 
 
 
